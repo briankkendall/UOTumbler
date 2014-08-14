@@ -7,15 +7,17 @@
 //
 
 #import "UserViewController.h"
-#import "JSON.h"
 #import "TMAPIClient.h"
+#import "UOFeedCollectionViewController.h"
+//#import "SBJson4.h"
 
 @interface UserViewController ()
 
 @end
 
 @implementation UserViewController
-@synthesize txtStringOrUsername;
+@synthesize txtStringOrUsername, lblError;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,21 +34,30 @@
     [TMAPIClient sharedInstance].OAuthConsumerKey = @"AWsfhrXeaMwPHv9z0QYrgIG9A5UmYecvYVFI4LvHGJURP1PaoE";
     [TMAPIClient sharedInstance].OAuthConsumerSecret = @"VvACSYBQojXWRgJBFNdzl7Xahe4q2zc1QmLbrwsgcbNjlX2Tgs";
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [lblError setHidden:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)buttonGoTap:(id)sender {
-    
+- (IBAction)btnGoTapped:(id)sender {
+  
     NSString *strOConsumerKey = @"AWsfhrXeaMwPHv9z0QYrgIG9A5UmYecvYVFI4LvHGJURP1PaoE";
     NSString *strOConsumerSecretKey = @"VvACSYBQojXWRgJBFNdzl7Xahe4q2zc1QmLbrwsgcbNjlX2Tgs";
     responseData = [[NSMutableData alloc] init];
     messages = [NSArray array];
-    NSString *nameOrUrlString = txtStringOrUsername.text;
+    NSString *nameOrUrlString;
+    NSArray *tmpArray = [txtStringOrUsername.text componentsSeparatedByString:@"."];
+    if (tmpArray)
+    {
+        nameOrUrlString = [tmpArray objectAtIndex:0];
+    }else{
+        nameOrUrlString = [[[txtStringOrUsername.text stringByReplacingOccurrencesOfString:@"http" withString:@""] stringByReplacingOccurrencesOfString:@"//" withString:@""] stringByReplacingOccurrencesOfString:@":" withString:@""];
+    }
     //NSURL* url = [NSURL URLWithString:nameOrUrlString];
-    nameOrUrlString = [NSString stringWithFormat:@"http://api.tumblr.com/v2/blog/%@.tumblr.com/info?api_key=%@", txtStringOrUsername.text, strOConsumerKey];
+    nameOrUrlString = [NSString stringWithFormat:@"http://api.tumblr.com/v2/blog/%@.tumblr.com/info?api_key=%@", nameOrUrlString, strOConsumerKey];
 
     
         NSURLRequest *request = [NSURLRequest requestWithURL:
@@ -78,8 +89,30 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
     
-    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    NSDictionary *results = [responseString JSONValue];
-    
+    responseDict = [NSJSONSerialization JSONObjectWithData:responseData options:NSUTF8StringEncoding error:nil];
+    if (responseDict) {
+        NSDictionary *meta = [responseDict objectForKey:@"meta"];
+        if ([[meta objectForKey:@"status"] integerValue] == 200) {
+            NSLog(@"ok");
+            //success
+            [self performSegueWithIdentifier:@"showFeed" sender:self];
+            [lblError setHidden:YES];
+        }else{
+            //error
+            [lblError setHidden: NO];
+        }
+    }
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"showFeed"])
+    {
+        // Get reference to the destination view controller
+        UOFeedCollectionViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [vc setResponseDict:responseDict];
+    }
 }
 @end

@@ -14,13 +14,40 @@
 		7CCF42B6199B830D00F05BE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF42B5199B830D00F05BE9 /* main.m */; };
 		7CCF42BA199B830D00F05BE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF42B9199B830D00F05BE9 /* AppDelegate.m */; };
 		7CCF42BD199B830D00F05BE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF42BB199B830D00F05BE9 /* Main.storyboard */; };
-		7CCF42C0199B830D00F05BE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF42BF199B830D00F05BE9 /* ViewController.m */; };
 		7CCF42C2199B830D00F05BE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF42C1199B830D00F05BE9 /* Images.xcassets */; };
 		7CCF42C9199B830D00F05BE9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCF42C8199B830D00F05BE9 /* XCTest.framework */; };
 		7CCF42CA199B830D00F05BE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCF42A9199B830D00F05BE9 /* Foundation.framework */; };
 		7CCF42CB199B830D00F05BE9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCF42AD199B830D00F05BE9 /* UIKit.framework */; };
 		7CCF42D3199B830D00F05BE9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF42D1199B830D00F05BE9 /* InfoPlist.strings */; };
 		7CCF42D5199B830D00F05BE9 /* TumblrUOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF42D4199B830D00F05BE9 /* TumblrUOTests.m */; };
+		7CCF42E0199B835900F05BE9 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF42DF199B835900F05BE9 /* UserViewController.m */; };
+		7CCF45F8199B83B700F05BE9 /* TMTumblrActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF45E3199B83B700F05BE9 /* TMTumblrActivity.m */; };
+		7CCF45F9199B83B700F05BE9 /* UIActivityTumblr.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF45E4199B83B700F05BE9 /* UIActivityTumblr.png */; };
+		7CCF45FA199B83B700F05BE9 /* UIActivityTumblr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF45E5199B83B700F05BE9 /* UIActivityTumblr@2x.png */; };
+		7CCF45FB199B83B700F05BE9 /* UIActivityTumblr@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF45E6199B83B700F05BE9 /* UIActivityTumblr@2x~ipad.png */; };
+		7CCF45FC199B83B700F05BE9 /* UIActivityTumblr~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF45E7199B83B700F05BE9 /* UIActivityTumblr~ipad.png */; };
+		7CCF45FD199B83B700F05BE9 /* UIActivityTumblr~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF45E8199B83B700F05BE9 /* UIActivityTumblr~ipad@2x.png */; };
+		7CCF45FE199B83B700F05BE9 /* TMAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF45EB199B83B700F05BE9 /* TMAPIClient.m */; };
+		7CCF45FF199B83B700F05BE9 /* TMTumblrAppClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF45EE199B83B700F05BE9 /* TMTumblrAppClient.m */; };
+		7CCF4600199B83B700F05BE9 /* TMOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF45F1199B83B700F05BE9 /* TMOAuth.m */; };
+		7CCF4601199B83B700F05BE9 /* TMTumblrAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF45F3199B83B700F05BE9 /* TMTumblrAuthenticator.m */; };
+		7CCF4602199B83B700F05BE9 /* TMSDKFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF45F6199B83B700F05BE9 /* TMSDKFunctions.m */; };
+		7CCF4623199B86B600F05BE9 /* JXHTTPDataBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF460B199B86B600F05BE9 /* JXHTTPDataBody.m */; };
+		7CCF4624199B86B600F05BE9 /* JXHTTPFileBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF460D199B86B600F05BE9 /* JXHTTPFileBody.m */; };
+		7CCF4625199B86B600F05BE9 /* JXHTTPFormEncodedBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF460F199B86B600F05BE9 /* JXHTTPFormEncodedBody.m */; };
+		7CCF4626199B86B600F05BE9 /* JXHTTPJSONBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4611199B86B600F05BE9 /* JXHTTPJSONBody.m */; };
+		7CCF4627199B86B600F05BE9 /* JXHTTPMultipartBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4613199B86B600F05BE9 /* JXHTTPMultipartBody.m */; };
+		7CCF4628199B86B600F05BE9 /* JXHTTPOperation+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4615199B86B600F05BE9 /* JXHTTPOperation+Convenience.m */; };
+		7CCF4629199B86B600F05BE9 /* JXHTTPOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4617199B86B600F05BE9 /* JXHTTPOperation.m */; };
+		7CCF462A199B86B600F05BE9 /* JXHTTPOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF461A199B86B600F05BE9 /* JXHTTPOperationQueue.m */; };
+		7CCF462B199B86B600F05BE9 /* JXOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF461E199B86B600F05BE9 /* JXOperation.m */; };
+		7CCF462C199B86B600F05BE9 /* JXURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4620199B86B600F05BE9 /* JXURLConnectionOperation.m */; };
+		7CCF462D199B86B600F05BE9 /* JXURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4622199B86B600F05BE9 /* JXURLEncoding.m */; };
+		7CCF4633199B9A6100F05BE9 /* UOFeedCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4632199B9A6100F05BE9 /* UOFeedCollectionViewController.m */; };
+		7CCF4637199BC3C600F05BE9 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4636199BC3C600F05BE9 /* RTLabel.m */; };
+		7CCF463A199BC42300F05BE9 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4639199BC42300F05BE9 /* CollectionViewCell.m */; };
+		7CCF463F199CF97000F05BE9 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF463D199CF97000F05BE9 /* Cell.m */; };
+		7CCF4640199CF97000F05BE9 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF463E199CF97000F05BE9 /* Cell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +72,67 @@
 		7CCF42B8199B830D00F05BE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7CCF42B9199B830D00F05BE9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7CCF42BC199B830D00F05BE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7CCF42BE199B830D00F05BE9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7CCF42BF199B830D00F05BE9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7CCF42C1199B830D00F05BE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7CCF42C7199B830D00F05BE9 /* TumblrUOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TumblrUOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCF42C8199B830D00F05BE9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7CCF42D0199B830D00F05BE9 /* TumblrUOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TumblrUOTests-Info.plist"; sourceTree = "<group>"; };
 		7CCF42D2199B830D00F05BE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7CCF42D4199B830D00F05BE9 /* TumblrUOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TumblrUOTests.m; sourceTree = "<group>"; };
+		7CCF42DE199B835900F05BE9 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		7CCF42DF199B835900F05BE9 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		7CCF45E2199B83B700F05BE9 /* TMTumblrActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTumblrActivity.h; sourceTree = "<group>"; };
+		7CCF45E3199B83B700F05BE9 /* TMTumblrActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTumblrActivity.m; sourceTree = "<group>"; };
+		7CCF45E4199B83B700F05BE9 /* UIActivityTumblr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIActivityTumblr.png; sourceTree = "<group>"; };
+		7CCF45E5199B83B700F05BE9 /* UIActivityTumblr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIActivityTumblr@2x.png"; sourceTree = "<group>"; };
+		7CCF45E6199B83B700F05BE9 /* UIActivityTumblr@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIActivityTumblr@2x~ipad.png"; sourceTree = "<group>"; };
+		7CCF45E7199B83B700F05BE9 /* UIActivityTumblr~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIActivityTumblr~ipad.png"; sourceTree = "<group>"; };
+		7CCF45E8199B83B700F05BE9 /* UIActivityTumblr~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIActivityTumblr~ipad@2x.png"; sourceTree = "<group>"; };
+		7CCF45EA199B83B700F05BE9 /* TMAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMAPIClient.h; sourceTree = "<group>"; };
+		7CCF45EB199B83B700F05BE9 /* TMAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMAPIClient.m; sourceTree = "<group>"; };
+		7CCF45ED199B83B700F05BE9 /* TMTumblrAppClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTumblrAppClient.h; sourceTree = "<group>"; };
+		7CCF45EE199B83B700F05BE9 /* TMTumblrAppClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTumblrAppClient.m; sourceTree = "<group>"; };
+		7CCF45F0199B83B700F05BE9 /* TMOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOAuth.h; sourceTree = "<group>"; };
+		7CCF45F1199B83B700F05BE9 /* TMOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOAuth.m; sourceTree = "<group>"; };
+		7CCF45F2199B83B700F05BE9 /* TMTumblrAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTumblrAuthenticator.h; sourceTree = "<group>"; };
+		7CCF45F3199B83B700F05BE9 /* TMTumblrAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTumblrAuthenticator.m; sourceTree = "<group>"; };
+		7CCF45F5199B83B700F05BE9 /* TMSDKFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMSDKFunctions.h; sourceTree = "<group>"; };
+		7CCF45F6199B83B700F05BE9 /* TMSDKFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMSDKFunctions.m; sourceTree = "<group>"; };
+		7CCF45F7199B83B700F05BE9 /* TMTumblrSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TMTumblrSDK-Prefix.pch"; sourceTree = "<group>"; };
+		7CCF4609199B86B600F05BE9 /* JXHTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTP.h; sourceTree = "<group>"; };
+		7CCF460A199B86B600F05BE9 /* JXHTTPDataBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPDataBody.h; sourceTree = "<group>"; };
+		7CCF460B199B86B600F05BE9 /* JXHTTPDataBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXHTTPDataBody.m; sourceTree = "<group>"; };
+		7CCF460C199B86B600F05BE9 /* JXHTTPFileBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPFileBody.h; sourceTree = "<group>"; };
+		7CCF460D199B86B600F05BE9 /* JXHTTPFileBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXHTTPFileBody.m; sourceTree = "<group>"; };
+		7CCF460E199B86B600F05BE9 /* JXHTTPFormEncodedBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPFormEncodedBody.h; sourceTree = "<group>"; };
+		7CCF460F199B86B600F05BE9 /* JXHTTPFormEncodedBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXHTTPFormEncodedBody.m; sourceTree = "<group>"; };
+		7CCF4610199B86B600F05BE9 /* JXHTTPJSONBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPJSONBody.h; sourceTree = "<group>"; };
+		7CCF4611199B86B600F05BE9 /* JXHTTPJSONBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXHTTPJSONBody.m; sourceTree = "<group>"; };
+		7CCF4612199B86B600F05BE9 /* JXHTTPMultipartBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPMultipartBody.h; sourceTree = "<group>"; };
+		7CCF4613199B86B600F05BE9 /* JXHTTPMultipartBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXHTTPMultipartBody.m; sourceTree = "<group>"; };
+		7CCF4614199B86B600F05BE9 /* JXHTTPOperation+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JXHTTPOperation+Convenience.h"; sourceTree = "<group>"; };
+		7CCF4615199B86B600F05BE9 /* JXHTTPOperation+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JXHTTPOperation+Convenience.m"; sourceTree = "<group>"; };
+		7CCF4616199B86B600F05BE9 /* JXHTTPOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPOperation.h; sourceTree = "<group>"; };
+		7CCF4617199B86B600F05BE9 /* JXHTTPOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXHTTPOperation.m; sourceTree = "<group>"; };
+		7CCF4618199B86B600F05BE9 /* JXHTTPOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPOperationDelegate.h; sourceTree = "<group>"; };
+		7CCF4619199B86B600F05BE9 /* JXHTTPOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPOperationQueue.h; sourceTree = "<group>"; };
+		7CCF461A199B86B600F05BE9 /* JXHTTPOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXHTTPOperationQueue.m; sourceTree = "<group>"; };
+		7CCF461B199B86B600F05BE9 /* JXHTTPOperationQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPOperationQueueDelegate.h; sourceTree = "<group>"; };
+		7CCF461C199B86B600F05BE9 /* JXHTTPRequestBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXHTTPRequestBody.h; sourceTree = "<group>"; };
+		7CCF461D199B86B600F05BE9 /* JXOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXOperation.h; sourceTree = "<group>"; };
+		7CCF461E199B86B600F05BE9 /* JXOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXOperation.m; sourceTree = "<group>"; };
+		7CCF461F199B86B600F05BE9 /* JXURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXURLConnectionOperation.h; sourceTree = "<group>"; };
+		7CCF4620199B86B600F05BE9 /* JXURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXURLConnectionOperation.m; sourceTree = "<group>"; };
+		7CCF4621199B86B600F05BE9 /* JXURLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXURLEncoding.h; sourceTree = "<group>"; };
+		7CCF4622199B86B600F05BE9 /* JXURLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXURLEncoding.m; sourceTree = "<group>"; };
+		7CCF4631199B9A6100F05BE9 /* UOFeedCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UOFeedCollectionViewController.h; sourceTree = "<group>"; };
+		7CCF4632199B9A6100F05BE9 /* UOFeedCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UOFeedCollectionViewController.m; sourceTree = "<group>"; };
+		7CCF4635199BC3C600F05BE9 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
+		7CCF4636199BC3C600F05BE9 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
+		7CCF4638199BC42300F05BE9 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		7CCF4639199BC42300F05BE9 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		7CCF463C199CF97000F05BE9 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		7CCF463D199CF97000F05BE9 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		7CCF463E199CF97000F05BE9 /* Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +181,8 @@
 		7CCF42A8199B830D00F05BE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CCF4608199B86B600F05BE9 /* JXHTTP */,
+				7CCF45E0199B83B700F05BE9 /* TMTumblrSDK */,
 				7CCF42A9199B830D00F05BE9 /* Foundation.framework */,
 				7CCF42AB199B830D00F05BE9 /* CoreGraphics.framework */,
 				7CCF42AD199B830D00F05BE9 /* UIKit.framework */,
@@ -112,11 +194,20 @@
 		7CCF42AF199B830D00F05BE9 /* TumblrUO */ = {
 			isa = PBXGroup;
 			children = (
+				7CCF42DE199B835900F05BE9 /* UserViewController.h */,
+				7CCF42DF199B835900F05BE9 /* UserViewController.m */,
 				7CCF42B8199B830D00F05BE9 /* AppDelegate.h */,
 				7CCF42B9199B830D00F05BE9 /* AppDelegate.m */,
 				7CCF42BB199B830D00F05BE9 /* Main.storyboard */,
-				7CCF42BE199B830D00F05BE9 /* ViewController.h */,
-				7CCF42BF199B830D00F05BE9 /* ViewController.m */,
+				7CCF4631199B9A6100F05BE9 /* UOFeedCollectionViewController.h */,
+				7CCF4632199B9A6100F05BE9 /* UOFeedCollectionViewController.m */,
+				7CCF4638199BC42300F05BE9 /* CollectionViewCell.h */,
+				7CCF4639199BC42300F05BE9 /* CollectionViewCell.m */,
+				7CCF4635199BC3C600F05BE9 /* RTLabel.h */,
+				7CCF4636199BC3C600F05BE9 /* RTLabel.m */,
+				7CCF463C199CF97000F05BE9 /* Cell.h */,
+				7CCF463D199CF97000F05BE9 /* Cell.m */,
+				7CCF463E199CF97000F05BE9 /* Cell.xib */,
 				7CCF42C1199B830D00F05BE9 /* Images.xcassets */,
 				7CCF42B0199B830D00F05BE9 /* Supporting Files */,
 			);
@@ -150,6 +241,104 @@
 				7CCF42D1199B830D00F05BE9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CCF45E0199B83B700F05BE9 /* TMTumblrSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7CCF45E1199B83B700F05BE9 /* Activity */,
+				7CCF45E9199B83B700F05BE9 /* APIClient */,
+				7CCF45EC199B83B700F05BE9 /* AppClient */,
+				7CCF45EF199B83B700F05BE9 /* Authentication */,
+				7CCF45F4199B83B700F05BE9 /* Core */,
+				7CCF45F7199B83B700F05BE9 /* TMTumblrSDK-Prefix.pch */,
+			);
+			path = TMTumblrSDK;
+			sourceTree = "<group>";
+		};
+		7CCF45E1199B83B700F05BE9 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				7CCF45E2199B83B700F05BE9 /* TMTumblrActivity.h */,
+				7CCF45E3199B83B700F05BE9 /* TMTumblrActivity.m */,
+				7CCF45E4199B83B700F05BE9 /* UIActivityTumblr.png */,
+				7CCF45E5199B83B700F05BE9 /* UIActivityTumblr@2x.png */,
+				7CCF45E6199B83B700F05BE9 /* UIActivityTumblr@2x~ipad.png */,
+				7CCF45E7199B83B700F05BE9 /* UIActivityTumblr~ipad.png */,
+				7CCF45E8199B83B700F05BE9 /* UIActivityTumblr~ipad@2x.png */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		7CCF45E9199B83B700F05BE9 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				7CCF45EA199B83B700F05BE9 /* TMAPIClient.h */,
+				7CCF45EB199B83B700F05BE9 /* TMAPIClient.m */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		7CCF45EC199B83B700F05BE9 /* AppClient */ = {
+			isa = PBXGroup;
+			children = (
+				7CCF45ED199B83B700F05BE9 /* TMTumblrAppClient.h */,
+				7CCF45EE199B83B700F05BE9 /* TMTumblrAppClient.m */,
+			);
+			path = AppClient;
+			sourceTree = "<group>";
+		};
+		7CCF45EF199B83B700F05BE9 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				7CCF45F0199B83B700F05BE9 /* TMOAuth.h */,
+				7CCF45F1199B83B700F05BE9 /* TMOAuth.m */,
+				7CCF45F2199B83B700F05BE9 /* TMTumblrAuthenticator.h */,
+				7CCF45F3199B83B700F05BE9 /* TMTumblrAuthenticator.m */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		7CCF45F4199B83B700F05BE9 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7CCF45F5199B83B700F05BE9 /* TMSDKFunctions.h */,
+				7CCF45F6199B83B700F05BE9 /* TMSDKFunctions.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7CCF4608199B86B600F05BE9 /* JXHTTP */ = {
+			isa = PBXGroup;
+			children = (
+				7CCF4609199B86B600F05BE9 /* JXHTTP.h */,
+				7CCF460A199B86B600F05BE9 /* JXHTTPDataBody.h */,
+				7CCF460B199B86B600F05BE9 /* JXHTTPDataBody.m */,
+				7CCF460C199B86B600F05BE9 /* JXHTTPFileBody.h */,
+				7CCF460D199B86B600F05BE9 /* JXHTTPFileBody.m */,
+				7CCF460E199B86B600F05BE9 /* JXHTTPFormEncodedBody.h */,
+				7CCF460F199B86B600F05BE9 /* JXHTTPFormEncodedBody.m */,
+				7CCF4610199B86B600F05BE9 /* JXHTTPJSONBody.h */,
+				7CCF4611199B86B600F05BE9 /* JXHTTPJSONBody.m */,
+				7CCF4612199B86B600F05BE9 /* JXHTTPMultipartBody.h */,
+				7CCF4613199B86B600F05BE9 /* JXHTTPMultipartBody.m */,
+				7CCF4614199B86B600F05BE9 /* JXHTTPOperation+Convenience.h */,
+				7CCF4615199B86B600F05BE9 /* JXHTTPOperation+Convenience.m */,
+				7CCF4616199B86B600F05BE9 /* JXHTTPOperation.h */,
+				7CCF4617199B86B600F05BE9 /* JXHTTPOperation.m */,
+				7CCF4618199B86B600F05BE9 /* JXHTTPOperationDelegate.h */,
+				7CCF4619199B86B600F05BE9 /* JXHTTPOperationQueue.h */,
+				7CCF461A199B86B600F05BE9 /* JXHTTPOperationQueue.m */,
+				7CCF461B199B86B600F05BE9 /* JXHTTPOperationQueueDelegate.h */,
+				7CCF461C199B86B600F05BE9 /* JXHTTPRequestBody.h */,
+				7CCF461D199B86B600F05BE9 /* JXOperation.h */,
+				7CCF461E199B86B600F05BE9 /* JXOperation.m */,
+				7CCF461F199B86B600F05BE9 /* JXURLConnectionOperation.h */,
+				7CCF4620199B86B600F05BE9 /* JXURLConnectionOperation.m */,
+				7CCF4621199B86B600F05BE9 /* JXURLEncoding.h */,
+				7CCF4622199B86B600F05BE9 /* JXURLEncoding.m */,
+			);
+			path = JXHTTP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +417,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CCF45FB199B83B700F05BE9 /* UIActivityTumblr@2x~ipad.png in Resources */,
+				7CCF45FA199B83B700F05BE9 /* UIActivityTumblr@2x.png in Resources */,
+				7CCF45F9199B83B700F05BE9 /* UIActivityTumblr.png in Resources */,
 				7CCF42C2199B830D00F05BE9 /* Images.xcassets in Resources */,
+				7CCF4640199CF97000F05BE9 /* Cell.xib in Resources */,
 				7CCF42B4199B830D00F05BE9 /* InfoPlist.strings in Resources */,
 				7CCF42BD199B830D00F05BE9 /* Main.storyboard in Resources */,
+				7CCF45FC199B83B700F05BE9 /* UIActivityTumblr~ipad.png in Resources */,
+				7CCF45FD199B83B700F05BE9 /* UIActivityTumblr~ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +444,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CCF42C0199B830D00F05BE9 /* ViewController.m in Sources */,
+				7CCF462B199B86B600F05BE9 /* JXOperation.m in Sources */,
+				7CCF45FF199B83B700F05BE9 /* TMTumblrAppClient.m in Sources */,
+				7CCF462D199B86B600F05BE9 /* JXURLEncoding.m in Sources */,
+				7CCF4602199B83B700F05BE9 /* TMSDKFunctions.m in Sources */,
+				7CCF462A199B86B600F05BE9 /* JXHTTPOperationQueue.m in Sources */,
+				7CCF4628199B86B600F05BE9 /* JXHTTPOperation+Convenience.m in Sources */,
+				7CCF4626199B86B600F05BE9 /* JXHTTPJSONBody.m in Sources */,
+				7CCF4624199B86B600F05BE9 /* JXHTTPFileBody.m in Sources */,
+				7CCF4623199B86B600F05BE9 /* JXHTTPDataBody.m in Sources */,
+				7CCF45FE199B83B700F05BE9 /* TMAPIClient.m in Sources */,
+				7CCF4633199B9A6100F05BE9 /* UOFeedCollectionViewController.m in Sources */,
+				7CCF463A199BC42300F05BE9 /* CollectionViewCell.m in Sources */,
+				7CCF4625199B86B600F05BE9 /* JXHTTPFormEncodedBody.m in Sources */,
+				7CCF462C199B86B600F05BE9 /* JXURLConnectionOperation.m in Sources */,
+				7CCF42E0199B835900F05BE9 /* UserViewController.m in Sources */,
 				7CCF42BA199B830D00F05BE9 /* AppDelegate.m in Sources */,
+				7CCF4601199B83B700F05BE9 /* TMTumblrAuthenticator.m in Sources */,
+				7CCF463F199CF97000F05BE9 /* Cell.m in Sources */,
+				7CCF45F8199B83B700F05BE9 /* TMTumblrActivity.m in Sources */,
 				7CCF42B6199B830D00F05BE9 /* main.m in Sources */,
+				7CCF4637199BC3C600F05BE9 /* RTLabel.m in Sources */,
+				7CCF4600199B83B700F05BE9 /* TMOAuth.m in Sources */,
+				7CCF4629199B86B600F05BE9 /* JXHTTPOperation.m in Sources */,
+				7CCF4627199B86B600F05BE9 /* JXHTTPMultipartBody.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +672,7 @@
 				7CCF42DA199B830D00F05BE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7CCF42DB199B830D00F05BE9 /* Build configuration list for PBXNativeTarget "TumblrUOTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +681,7 @@
 				7CCF42DD199B830D00F05BE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
