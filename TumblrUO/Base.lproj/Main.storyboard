@@ -73,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-295" y="15"/>
+            <point key="canvasLocation" x="-281" y="-553"/>
         </scene>
         <!--Feed Collection View Controller-->
         <scene sceneID="QZs-3T-QOF">
@@ -127,7 +127,6 @@
                         <outlet property="lblDescription" destination="ild-Zi-EY3" id="W1C-d1-AvE"/>
                         <outlet property="lblUsername" destination="uhn-zv-vkJ" id="bJS-25-yHB"/>
                         <outlet property="theCollectionView" destination="dLL-09-8ab" id="tsS-eu-6Cv"/>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="showNextFeed" id="CeT-dp-7F1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmU-gV-xsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -175,7 +174,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="CeT-dp-7F1"/>
-    </inferredMetricsTieBreakers>
 </document>

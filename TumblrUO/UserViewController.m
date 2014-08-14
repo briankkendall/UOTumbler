@@ -11,6 +11,7 @@
 #import "UOFeedCollectionViewController.h"
 //#import "SBJson4.h"
 
+
 @interface UserViewController ()
 
 @end
@@ -33,7 +34,42 @@
     // Do any additional setup after loading the view.
     [TMAPIClient sharedInstance].OAuthConsumerKey = @"AWsfhrXeaMwPHv9z0QYrgIG9A5UmYecvYVFI4LvHGJURP1PaoE";
     [TMAPIClient sharedInstance].OAuthConsumerSecret = @"VvACSYBQojXWRgJBFNdzl7Xahe4q2zc1QmLbrwsgcbNjlX2Tgs";
+    
+    /*
+     Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the method reachabilityChanged will be called.
+     */
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    //Change the host name here to change the server you want to monitor.
+    NSString *remoteHostName = @"api.tumblr.com";
 
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+    
+    if(remoteHostStatus == NotReachable) {NSLog(@"no");}
+
+
+}
+- (void)reachabilityChanged:(NSNotification *)notice
+{
+    //not acting right as of IOS 7.  should have used afNetworkingReachabilityManager.  smh!  not enough time to switch to that implementation
+//    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+//    
+//    if(remoteHostStatus == NotReachable) {
+//    
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                                        message:@"Network error."
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//    }
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [lblError setHidden:YES];
@@ -63,8 +99,19 @@
     
         NSURLRequest *request = [NSURLRequest requestWithURL:
                                  [NSURL URLWithString:nameOrUrlString]];
-    
-	[[NSURLConnection alloc] initWithRequest:request delegate:self];
+
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+    if(remoteHostStatus == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Network error."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }else{
+
+        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    }
 }
 
 

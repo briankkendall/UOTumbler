@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CollectionViewCell.h"
+#import "Reachability.h"
 
 @interface UOFeedCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,RTLabelDelegate>
 {
@@ -16,7 +17,7 @@
     NSMutableData *responseData;
     NSMutableArray *messages;
     NSDictionary *responseDict;
-    
+    Reachability *reachability;
 }
 //view header related
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;

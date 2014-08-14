@@ -63,8 +63,19 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:nameOrUrlString]];
     
-	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+    
+//    if(remoteHostStatus == NotReachable) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                                        message:@"Network error."
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//    }else{
+    
+        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//    }
 }
 - (void)viewDidLoad
 {
@@ -77,9 +88,20 @@
     [refreshControl addTarget:self action:@selector(startRefresh:)
              forControlEvents:UIControlEventValueChanged];
     [self.theCollectionView addSubview:refreshControl];
+    
+//    reachability = [Reachability reachabilityForInternetConnection];
+//    [reachability startNotifier];
+    
 
 }
-
+- (void)reachabilityChanged:(NSNotification *)notice
+{
+    //not acting right
+//    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+//    
+//    if(remoteHostStatus == NotReachable) {NSLog(@"no");}
+//    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -105,7 +127,19 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:nameOrUrlString]];
     
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+//not working in ios 7 apparently.  should have used afnetworkingreachabilitymanager.
+//    if(remoteHostStatus == NotReachable) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                                        message:@"Network error."
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//    }else{
+    
+        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//    }
 
 }
 
@@ -115,7 +149,17 @@
     
     // Update the custom cell with some text
     cell.titleLabel.text = [NSString stringWithFormat:@"Fetched item: %d", indexPath.item];
-    cell.titleLabel.text = [[messages objectAtIndex:indexPath.row] objectForKey:@"blog_name"];
+    NSString *sentence = [[messages objectAtIndex:indexPath.row] objectForKey:@"caption"];
+    NSString *word = @"Submitted By:";
+    if ([sentence rangeOfString:word].location != NSNotFound && sentence != nil) {
+        //trying to parse who submitted the post...
+        NSString *tmpString = [[messages objectAtIndex:indexPath.row] objectForKey:@"caption"];
+        
+        cell.titleLabel.text = [[messages objectAtIndex:indexPath.row] objectForKey:@"caption"];
+    }else{
+
+        cell.titleLabel.text = [[messages objectAtIndex:indexPath.row] objectForKey:@"blog_name"];
+    }
     //enable tap event on the label
     [cell.titleLabel setUserInteractionEnabled:YES];
     UITapGestureRecognizer *gestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap:)];
