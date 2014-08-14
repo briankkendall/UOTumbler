@@ -16,7 +16,7 @@
     NSMutableData *responseData;
     NSMutableArray *messages;
     NSDictionary *responseDict;
-
+    
 }
 //view header related
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
@@ -29,6 +29,8 @@
 
 @property (weak, nonatomic) IBOutlet CollectionViewCell *customCollectionViewCell;
 @property (weak, nonatomic) IBOutlet UILabel *lblCellLabel;
+
+@property (nonatomic, retain) NSString *selectedBlogUsername;
 - (void)setResponseDict: (NSDictionary *)responseDictionary;
 - (void)getMoreData;
 

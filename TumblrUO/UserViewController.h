@@ -13,8 +13,9 @@
     NSMutableData *responseData;
     NSArray *messages;
     NSDictionary *responseDict;
+    NSString *tmpUsername;
 }
 @property (weak, nonatomic) IBOutlet UITextField *txtStringOrUsername;
 @property (weak, nonatomic) IBOutlet UILabel *lblError;
-
+- (void)setUserNameText: (NSString *)userName;
 @end

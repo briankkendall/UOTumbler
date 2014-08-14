@@ -8,7 +8,7 @@
 
 #import "UOFeedCollectionViewController.h"
 #import "Cell.h"
-
+#import "UserViewController.h"
 
 #define ITEMS_PAGE_SIZE 20
 #define ITEM_CELL_IDENTIFIER @"UOTumblrCell"
@@ -45,8 +45,9 @@
     NSString *nameOrUrlString = [[[responseDict objectForKey:@"response"] objectForKey:@"blog"] objectForKey:@"url"];
     nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"http://" withString:@""];
     nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    
     NSString *strImagePath;
-    strImagePath = [NSString stringWithFormat:@"http://api.tumblr.com/v2/blog/%@/avatar/16", nameOrUrlString];
+    strImagePath = [NSString stringWithFormat:@"http://api.tumblr.com/v2/blog/%@/avatar/64", nameOrUrlString];
     
     //set the avatar image
     NSURL * imageURL = [NSURL URLWithString: strImagePath];
@@ -72,6 +73,10 @@
     [self.theCollectionView registerClass:[Cell class] forCellWithReuseIdentifier:ITEM_CELL_IDENTIFIER];
     [self.theCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
     _numRetrieved = 0;
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(startRefresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.theCollectionView addSubview:refreshControl];
 
 }
 
@@ -84,11 +89,6 @@
 - (void)getMoreData {
     
     // Generate the 'next page' of data.
-//    NSMutableArray *newData = [NSMutableArray array];
-//    NSInteger pageSize = ITEMS_PAGE_SIZE;
-//    for (int i = _currentPage * pageSize; i < ((_currentPage * pageSize) + pageSize); i++) {
-//        [newData addObject:[NSString stringWithFormat:@"Item #%d", i]];
-//    }
     
     _currentPage++;
     
@@ -115,17 +115,51 @@
     
     // Update the custom cell with some text
     cell.titleLabel.text = [NSString stringWithFormat:@"Fetched item: %d", indexPath.item];
+    cell.titleLabel.text = [[messages objectAtIndex:indexPath.row] objectForKey:@"blog_name"];
+    //enable tap event on the label
+    [cell.titleLabel setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *gestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap:)];
+    gestureRec.numberOfTouchesRequired = 1;
+    gestureRec.numberOfTapsRequired = 1;
+    [cell.titleLabel addGestureRecognizer:gestureRec];
+    
+    
     cell.backgroundColor = [UIColor whiteColor];
     NSDictionary *tmpDict = [[[messages objectAtIndex:indexPath.row] objectForKey:@"photos"] objectAtIndex:0];
     NSURL * imageURL = [NSURL URLWithString: [[tmpDict objectForKey:@"original_size"] objectForKey:@"url"]];
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
-    UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(5,5, 100, 100)];
+    UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(5,5, 320, 300)];
     imv.image=[UIImage imageWithData:imageData];
     [cell addSubview:imv];
     //cell.titleLabel.lineSpacing = 20.0;
     return cell;
 }
+-(void)startRefresh:(id)sender
+{
+    _currentPage = 0;
+    [self getMoreData];
+}
+
+-(void)labelTap:(UITapGestureRecognizer *)tgr{
+    
+    UILabel *tmpLabel = ((UILabel *)tgr.view);
+    NSLog(@"tapped label: %@", tmpLabel.text);
+    _selectedBlogUsername = tmpLabel.text;
+    //[self performSegueWithIdentifier:@"showNextFeed" sender:self];
+    
+}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    // Make sure your segue name in storyboard is the same as this line
+//    if ([[segue identifier] isEqualToString:@"showNextFeed"])
+//    {
+//        // Get reference to the destination view controller
+//        UserViewController *vc = [segue destinationViewController];
+//        
+//        // Pass any objects to the view controller here, like...
+//        [vc setUserNameText:_selectedBlogUsername];
+//    }
+//}
 #pragma mark - UICollectionView Delegate
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,6 +168,8 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *tmpDict = [messages objectAtIndex: indexPath.row];
+    NSString *blogName = [tmpDict objectForKey:@"blog_name"];
     
 }
 
@@ -152,7 +188,6 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSString *strCaption;
     
     if (indexPath.item < messages.count) {
         
@@ -227,7 +262,7 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize retVal = CGSizeMake(200, 200);
+    CGSize retVal = CGSizeMake(320, 500);
     
     return retVal;
 }

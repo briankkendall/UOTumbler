@@ -33,6 +33,7 @@
     // Do any additional setup after loading the view.
     [TMAPIClient sharedInstance].OAuthConsumerKey = @"AWsfhrXeaMwPHv9z0QYrgIG9A5UmYecvYVFI4LvHGJURP1PaoE";
     [TMAPIClient sharedInstance].OAuthConsumerSecret = @"VvACSYBQojXWRgJBFNdzl7Xahe4q2zc1QmLbrwsgcbNjlX2Tgs";
+
 }
 - (void)viewWillAppear:(BOOL)animated{
     [lblError setHidden:YES];
@@ -45,7 +46,7 @@
 - (IBAction)btnGoTapped:(id)sender {
   
     NSString *strOConsumerKey = @"AWsfhrXeaMwPHv9z0QYrgIG9A5UmYecvYVFI4LvHGJURP1PaoE";
-    NSString *strOConsumerSecretKey = @"VvACSYBQojXWRgJBFNdzl7Xahe4q2zc1QmLbrwsgcbNjlX2Tgs";
+    //NSString *strOConsumerSecretKey = @"VvACSYBQojXWRgJBFNdzl7Xahe4q2zc1QmLbrwsgcbNjlX2Tgs";
     responseData = [[NSMutableData alloc] init];
     messages = [NSArray array];
     NSString *nameOrUrlString;
@@ -65,6 +66,7 @@
     
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
+
 
 /*
 #pragma mark - Navigation
