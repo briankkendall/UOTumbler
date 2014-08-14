@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  UOFeedCollectionViewController.h
 //  TumblrUO
 //
 //  Created by bkendall on 8/13/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface UOFeedCollectionViewController : UICollectionViewController
 
 @end
