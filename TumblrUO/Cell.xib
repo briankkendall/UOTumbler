@@ -30,6 +30,7 @@
             <color key="backgroundColor" red="1" green="0.0039215688589999999" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
             <size key="customSize" width="256" height="70"/>
             <connections>
+                <outlet property="cellImage" destination="VFR-zg-ugA" id="WyS-V2-bBo"/>
                 <outlet property="titleLabel" destination="IjX-yy-5aG" id="PpD-fb-hCd"/>
             </connections>
         </collectionViewCell>

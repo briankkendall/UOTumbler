@@ -9,6 +9,9 @@
 #import "UOFeedCollectionViewController.h"
 #import "Cell.h"
 #import "UserViewController.h"
+#import "TMAPIClient.h"
+#import "AFNetworkReachabilityManager.h"
+
 
 #define ITEMS_PAGE_SIZE 20
 #define ITEM_CELL_IDENTIFIER @"UOTumblrCell"
@@ -39,43 +42,46 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     
-    NSString *strOConsumerKey = STR_O_CONSUMER_KEY;
     responseData = [[NSMutableData alloc] init];
     messages = [NSMutableArray array];
-    NSString *nameOrUrlString = [[[responseDict objectForKey:@"response"] objectForKey:@"blog"] objectForKey:@"url"];
+    NSString *nameOrUrlString = [[responseDict objectForKey:@"blog"] objectForKey:@"name"];
+    
+    //set the username and the description
+    lblUsername.text = [[responseDict objectForKey:@"blog"] objectForKey:@"name"];
+    
+    //might be html so this is attributed text
+    lblDescription.attributedText = [self attributedStringWithHTML:[self styledHTMLwithHTML: [[responseDict objectForKey:@"blog"] objectForKey:@"description"]]];
+    
     nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"http://" withString:@""];
     nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"/" withString:@""];
     
-    NSString *strImagePath;
-    strImagePath = [NSString stringWithFormat:@"http://api.tumblr.com/v2/blog/%@/avatar/64", nameOrUrlString];
+    __block NSString *strImagePath;
+    __block UIImage * image;
+    if ([AFNetworkReachabilityManager sharedManager].reachable) {
+
+        //set the avatar image
+        [[TMAPIClient sharedInstance] avatar:[NSString stringWithFormat: @"%@.tumblr.com", nameOrUrlString]
+                                            size:64
+                                        callback:^ (id result, NSError *error) {
+                                            // ...
+                                            if (!error) {
+                                                //strImagePath = result;
+                                                //NSData *img = [NSData dataWith length:<#(NSUInteger)#>]
+                                                NSURL * imageURL = [NSURL URLWithString: strImagePath];
+                                                NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+                                                image = [UIImage imageWithData:result];
+                                                avatarImage.image = image;
+                                            }else{
+                                                NSLog(@"error");
+                                            }
+        }];
+    }
     
-    //set the avatar image
-    NSURL * imageURL = [NSURL URLWithString: strImagePath];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
-    avatarImage.image = image;
+//    //retrieve the posts
+    [self getMoreData];
+
+
     
-    //set the username and the description
-    lblUsername.text = [[[responseDict objectForKey:@"response"] objectForKey:@"blog"] objectForKey:@"name"];
-    lblDescription.text = [[[responseDict objectForKey:@"response"] objectForKey:@"blog"] objectForKey:@"description"];
-    
-    nameOrUrlString = [NSString stringWithFormat:@"http://api.tumblr.com/v2/blog/%@/posts?api_key=%@", nameOrUrlString, strOConsumerKey];
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:nameOrUrlString]];
-    
-    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
-    
-//    if(remoteHostStatus == NotReachable) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                                        message:@"Network error."
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//    }else{
-    
-        [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//    }
 }
 - (void)viewDidLoad
 {
@@ -89,8 +95,6 @@
              forControlEvents:UIControlEventValueChanged];
     [self.theCollectionView addSubview:refreshControl];
     
-//    reachability = [Reachability reachabilityForInternetConnection];
-//    [reachability startNotifier];
     
 
 }
@@ -112,34 +116,28 @@
     
     // Generate the 'next page' of data.
     
-    _currentPage++;
-    
-    NSString *strOConsumerKey = STR_O_CONSUMER_KEY;
-    responseData = [[NSMutableData alloc] init];
-    //messages = [NSMutableArray array];
-    NSString *nameOrUrlString = [[[responseDict objectForKey:@"response"] objectForKey:@"blog"] objectForKey:@"url"];
-    nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-    nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    
-    
-    nameOrUrlString = [NSString stringWithFormat:@"http://api.tumblr.com/v2/blog/%@/posts/?api_key=%@&offset=%i", nameOrUrlString, strOConsumerKey, _currentPage * ITEMS_PAGE_SIZE];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:nameOrUrlString]];
-    
-    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
-//not working in ios 7 apparently.  should have used afnetworkingreachabilitymanager.
-//    if(remoteHostStatus == NotReachable) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                                        message:@"Network error."
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//    }else{
-    
-        [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//    }
+    if ([AFNetworkReachabilityManager sharedManager].reachable) {
+        _currentPage++;
+        //retrieve the posts
+        [[TMAPIClient sharedInstance] posts:[NSString stringWithFormat:@"%@.tumblr.com", lblUsername.text] type:nil parameters:@{ @"offset" : [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE]  } callback:^(id result, NSError *error){
+            
+            if(!error)
+            {
+                
+                if ([messages count] > 0) {
+                    // Add the new data to our local collection of data.
+                    for (int i = 0; i < [[result objectForKey:@"posts"] count]; i++) {
+                        [messages addObject: [[result objectForKey:@"posts"] objectAtIndex:i]];
+                    }
+                }else{
+                    messages = [NSMutableArray arrayWithArray:[result objectForKey:@"posts"]];
+                }
+                _numRetrieved += ITEMS_PAGE_SIZE;
+                [theCollectionView reloadData];
+            }
+            
+        }];
+        }
 
 }
 
@@ -152,10 +150,12 @@
     NSString *sentence = [[messages objectAtIndex:indexPath.row] objectForKey:@"caption"];
     NSString *word = @"Submitted By:";
     if ([sentence rangeOfString:word].location != NSNotFound && sentence != nil) {
-        //trying to parse who submitted the post...
-        NSString *tmpString = [[messages objectAtIndex:indexPath.row] objectForKey:@"caption"];
         
-        cell.titleLabel.text = [[messages objectAtIndex:indexPath.row] objectForKey:@"caption"];
+        //Comments are html so make an attributed string to make it look right...
+        NSString *tmpString = [self styledHTMLwithHTML:[[messages objectAtIndex:indexPath.row] objectForKey:@"caption"]];
+        
+        NSAttributedString *attributedText = [self attributedStringWithHTML:tmpString];
+        cell.titleLabel.attributedText = attributedText;
     }else{
 
         cell.titleLabel.text = [[messages objectAtIndex:indexPath.row] objectForKey:@"blog_name"];
@@ -175,8 +175,19 @@
     UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(5,5, 320, 300)];
     imv.image=[UIImage imageWithData:imageData];
     [cell addSubview:imv];
+    //cell.cellImage.image = [UIImage imageWithData:imageData];
     //cell.titleLabel.lineSpacing = 20.0;
     return cell;
+}
+- (NSString *)styledHTMLwithHTML:(NSString *)HTML {
+    NSString *style = @"<meta charset=\"UTF-8\"><style> body { font-family: 'HelveticaNeue'; font-size: 20px; } b {font-family: 'MarkerFelt-Wide'; }</style>";
+    
+    return [NSString stringWithFormat:@"%@%@", style, HTML];
+}
+
+- (NSAttributedString *)attributedStringWithHTML:(NSString *)HTML {
+    NSDictionary *options = @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType };
+    return [[NSAttributedString alloc] initWithData:[HTML dataUsingEncoding:NSUTF8StringEncoding] options:options documentAttributes:NULL error:NULL];
 }
 -(void)startRefresh:(id)sender
 {
@@ -189,21 +200,52 @@
     UILabel *tmpLabel = ((UILabel *)tgr.view);
     NSLog(@"tapped label: %@", tmpLabel.text);
     _selectedBlogUsername = tmpLabel.text;
-    //[self performSegueWithIdentifier:@"showNextFeed" sender:self];
+    _selectedBlogUsername = @"nba";
+
+        if ([AFNetworkReachabilityManager sharedManager].reachable) {
+            
+            //hardcoded nba to make sure to navigate to another page.  Couldn't find where the api was returning the username of the other user other than the submitted: 'username' text.
+            [[TMAPIClient sharedInstance] blogInfo: [NSString stringWithFormat:@"%@.tumblr.com", @"nba"]
+                                          callback:^ (id result, NSError *error) {
+                                              // ...
+                                              
+                                              if (!error) {
+                                                  NSLog(@"ok");
+                                                  //success
+                                                  
+                                                  UOFeedCollectionViewController *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"UOFeedCollectionViewController"];
+                                                  [newView setResponseDict:result];
+                                                  [self.navigationController pushViewController:newView animated:YES];
+                                                  
+                                                  responseDict = result;
+                                                  responseData = result;
+                                                  
+                                                 // [self performSegueWithIdentifier:@"showFeed" sender:self];
+                                                  //[lblError setHidden:YES];
+                                              }else{
+                                                  //error
+                                                  //[lblError setHidden: NO];
+                                              }
+                                          }];
+        }
+
+
     
 }
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    // Make sure your segue name in storyboard is the same as this line
-//    if ([[segue identifier] isEqualToString:@"showNextFeed"])
-//    {
-//        // Get reference to the destination view controller
-//        UserViewController *vc = [segue destinationViewController];
-//        
-//        // Pass any objects to the view controller here, like...
-//        [vc setUserNameText:_selectedBlogUsername];
-//    }
-//}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"showNextFeed"])
+    {
+        // Get reference to the destination view controller
+        UserViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [vc setUserNameText:_selectedBlogUsername];
+    }
+}
 #pragma mark - UICollectionView Delegate
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -214,6 +256,22 @@
 {
     NSDictionary *tmpDict = [messages objectAtIndex: indexPath.row];
     NSString *blogName = [tmpDict objectForKey:@"blog_name"];
+    
+    Cell *cell = (Cell *)[self.theCollectionView dequeueReusableCellWithReuseIdentifier:ITEM_CELL_IDENTIFIER forIndexPath:indexPath];
+    [UIView transitionWithView:theCollectionView
+                      duration:.5
+                       //options:UIViewAnimationOptionTransitionCurlUp
+                      options:UIViewAnimationOptionTransitionFlipFromTop
+                    animations:^{
+                        
+                        //any animatable attribute here.
+                        cell.frame = CGRectMake(3, 14, 100, 100);
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        //whatever you want to do upon completion
+                        
+                    }];
     
 }
 
@@ -262,47 +320,6 @@
 }
 
 
-#pragma mark NSURLConnection Delegate methods
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    //clear out the response...
-    [responseData setLength:0];
-}
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-    //set the responseData to the data coming back from the call...
-    [responseData appendData:data];
-}
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    //label.text = [NSString stringWithFormat:@"Connection Failed!"];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    
-    responseDict = [NSJSONSerialization JSONObjectWithData:responseData options:NSUTF8StringEncoding error:nil];
-    if (responseDict) {
-        NSDictionary *meta = [responseDict objectForKey:@"meta"];
-        if ([[meta objectForKey:@"status"] integerValue] == 200) {
-            NSLog(@"ok");
-            //success
-            if ([messages count] > 0) {
-                // Add the new data to our local collection of data.
-                for (int i = 0; i < [[[responseDict objectForKey:@"response"] objectForKey:@"posts"] count]; i++) {
-                    [messages addObject: [[[responseDict objectForKey:@"response"] objectForKey:@"posts"] objectAtIndex:i]];
-                }
-            }else{
-                messages = [NSMutableArray arrayWithArray:[[responseDict objectForKey:@"response"] objectForKey:@"posts"]];
-            }
-            _numRetrieved += ITEMS_PAGE_SIZE;
-            //[self performSegueWithIdentifier:@"showFeed" sender:self];
-            [theCollectionView reloadData];
-            
-            
-        }else{
-            //error
-            
-        }
-    }
-}
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -311,11 +328,5 @@
     return retVal;
 }
 
-#pragma mark RTLabel delegate
-
-- (void)rtLabel:(id)rtLabel didSelectLinkWithURL:(NSURL*)url
-{
-	NSLog(@"did select url %@", url);
-}
 
 @end

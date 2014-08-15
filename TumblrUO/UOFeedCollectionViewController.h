@@ -10,7 +10,7 @@
 #import "CollectionViewCell.h"
 #import "Reachability.h"
 
-@interface UOFeedCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,RTLabelDelegate>
+@interface UOFeedCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
     NSInteger _currentPage;
     NSInteger _numRetrieved;

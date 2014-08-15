@@ -78,7 +78,7 @@
         <!--Feed Collection View Controller-->
         <scene sceneID="QZs-3T-QOF">
             <objects>
-                <viewController id="MoI-hy-kIS" customClass="UOFeedCollectionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UOFeedCollectionViewController" id="MoI-hy-kIS" customClass="UOFeedCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="I1I-OT-L09"/>
                         <viewControllerLayoutGuide type="bottom" id="pq7-G3-VD4"/>
@@ -107,15 +107,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhn-zv-vkJ">
-                                <rect key="frame" x="61" y="130" width="198" height="21"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ild-Zi-EY3">
-                                <rect key="frame" x="61" y="174" width="198" height="30"/>
+                                <rect key="frame" x="0.0" y="167" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

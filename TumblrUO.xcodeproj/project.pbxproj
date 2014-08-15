@@ -44,7 +44,6 @@
 		7CCF462C199B86B600F05BE9 /* JXURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4620199B86B600F05BE9 /* JXURLConnectionOperation.m */; };
 		7CCF462D199B86B600F05BE9 /* JXURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4622199B86B600F05BE9 /* JXURLEncoding.m */; };
 		7CCF4633199B9A6100F05BE9 /* UOFeedCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4632199B9A6100F05BE9 /* UOFeedCollectionViewController.m */; };
-		7CCF4637199BC3C600F05BE9 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4636199BC3C600F05BE9 /* RTLabel.m */; };
 		7CCF463A199BC42300F05BE9 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4639199BC42300F05BE9 /* CollectionViewCell.m */; };
 		7CCF463F199CF97000F05BE9 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF463D199CF97000F05BE9 /* Cell.m */; };
 		7CCF4640199CF97000F05BE9 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCF463E199CF97000F05BE9 /* Cell.xib */; };
@@ -136,8 +135,6 @@
 		7CCF4622199B86B600F05BE9 /* JXURLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXURLEncoding.m; sourceTree = "<group>"; };
 		7CCF4631199B9A6100F05BE9 /* UOFeedCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UOFeedCollectionViewController.h; sourceTree = "<group>"; };
 		7CCF4632199B9A6100F05BE9 /* UOFeedCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UOFeedCollectionViewController.m; sourceTree = "<group>"; };
-		7CCF4635199BC3C600F05BE9 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
-		7CCF4636199BC3C600F05BE9 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		7CCF4638199BC42300F05BE9 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		7CCF4639199BC42300F05BE9 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		7CCF463C199CF97000F05BE9 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
@@ -226,20 +223,18 @@
 		7CCF42AF199B830D00F05BE9 /* TumblrUO */ = {
 			isa = PBXGroup;
 			children = (
-				7CCF42DE199B835900F05BE9 /* UserViewController.h */,
-				7CCF42DF199B835900F05BE9 /* UserViewController.m */,
 				7CCF42B8199B830D00F05BE9 /* AppDelegate.h */,
 				7CCF42B9199B830D00F05BE9 /* AppDelegate.m */,
-				7CCF42BB199B830D00F05BE9 /* Main.storyboard */,
+				7CCF42DE199B835900F05BE9 /* UserViewController.h */,
+				7CCF42DF199B835900F05BE9 /* UserViewController.m */,
 				7CCF4631199B9A6100F05BE9 /* UOFeedCollectionViewController.h */,
 				7CCF4632199B9A6100F05BE9 /* UOFeedCollectionViewController.m */,
 				7CCF4638199BC42300F05BE9 /* CollectionViewCell.h */,
 				7CCF4639199BC42300F05BE9 /* CollectionViewCell.m */,
-				7CCF4635199BC3C600F05BE9 /* RTLabel.h */,
-				7CCF4636199BC3C600F05BE9 /* RTLabel.m */,
 				7CCF463C199CF97000F05BE9 /* Cell.h */,
 				7CCF463D199CF97000F05BE9 /* Cell.m */,
 				7CCF463E199CF97000F05BE9 /* Cell.xib */,
+				7CCF42BB199B830D00F05BE9 /* Main.storyboard */,
 				7CCF4641199D4E3B00F05BE9 /* Reachability.h */,
 				7CCF4642199D4E3B00F05BE9 /* Reachability.m */,
 				7CCF42C1199B830D00F05BE9 /* Images.xcassets */,
@@ -448,6 +443,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = bkendall;
 				TargetAttributes = {
+					7CCF42A5199B830D00F05BE9 = {
+						DevelopmentTeam = EPNV48RH6F;
+					};
 					7CCF42C6199B830D00F05BE9 = {
 						TestTargetID = 7CCF42A5199B830D00F05BE9;
 					};
@@ -534,7 +532,6 @@
 				7CCF463F199CF97000F05BE9 /* Cell.m in Sources */,
 				7CCF45F8199B83B700F05BE9 /* TMTumblrActivity.m in Sources */,
 				7CCF42B6199B830D00F05BE9 /* main.m in Sources */,
-				7CCF4637199BC3C600F05BE9 /* RTLabel.m in Sources */,
 				7CCF4600199B83B700F05BE9 /* TMOAuth.m in Sources */,
 				7CCF4629199B86B600F05BE9 /* JXHTTPOperation.m in Sources */,
 				7CCF4627199B86B600F05BE9 /* JXHTTPMultipartBody.m in Sources */,
@@ -603,7 +600,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: brian kendall (EPNV48RH6F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: brian kendall (EPNV48RH6F)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -641,7 +639,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: brian kendall (EPNV48RH6F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: brian kendall (EPNV48RH6F)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -662,10 +661,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TumblrUO/TumblrUO-Prefix.pch";
 				INFOPLIST_FILE = "TumblrUO/TumblrUO-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -675,10 +677,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TumblrUO/TumblrUO-Prefix.pch";
 				INFOPLIST_FILE = "TumblrUO/TumblrUO-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -18,6 +18,14 @@
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
     }];
+    
+    //tumblr client
+    [TMAPIClient sharedInstance].OAuthConsumerKey = @"AWsfhrXeaMwPHv9z0QYrgIG9A5UmYecvYVFI4LvHGJURP1PaoE";
+    [TMAPIClient sharedInstance].OAuthConsumerSecret = @"VvACSYBQojXWRgJBFNdzl7Xahe4q2zc1QmLbrwsgcbNjlX2Tgs";
+    
+    [TMAPIClient sharedInstance].OAuthToken = @"a6Ripq4wofWkX41TLFiBAPBYzxUfY1VwP2BreHTmS65rV6UQfn";
+    [TMAPIClient sharedInstance].OAuthTokenSecret = @"nmqE9o9oMplE7k8SeYHqoaWeXs2wXfXzoGzrNjPtcgyqb5KK34";
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     return YES;
 }
 							
