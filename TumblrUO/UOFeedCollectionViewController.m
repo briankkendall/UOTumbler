@@ -140,7 +140,7 @@
 
         //retrieve the posts
         //increment the current page
-        _currentPage++;
+
 
         NSNumber *numItems = [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE];
             [[TMAPIClient sharedInstance] posts:[NSString stringWithFormat:@"%@.tumblr.com", lblUsername.text] type:nil parameters:@{ @"offset" : numItems  } callback:^(id result, NSError *error){
@@ -156,6 +156,7 @@
                     }else{
                         messages = [NSMutableArray arrayWithArray:[result objectForKey:@"posts"]];
                     }
+                    _currentPage++;
                     _numRetrieved += ITEMS_PAGE_SIZE;
                     [theCollectionView reloadData];
                 }
