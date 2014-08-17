@@ -23,7 +23,7 @@
 
 @implementation UOFeedCollectionViewController
 @synthesize avatarImage;
-@synthesize lblUsername, lblDescription;
+@synthesize lblUsername, lblDescription, txtDescription;
 @synthesize theCollectionView;
 @synthesize customCollectionViewCell;
 @synthesize lblCellLabel;
@@ -50,12 +50,13 @@
     lblUsername.text = [[responseDict objectForKey:@"blog"] objectForKey:@"name"];
     
     //might be html so this is attributed text
+    [lblDescription setFont:[UIFont fontWithName:@"System" size:13]];
     lblDescription.attributedText = [self attributedStringWithHTML:[self styledHTMLwithHTML: [[responseDict objectForKey:@"blog"] objectForKey:@"description"]]];
-    
+    txtDescription.backgroundColor = [UIColor clearColor];
+    txtDescription.attributedText = [self attributedStringWithHTML:[self styledHTMLwithHTML: [[responseDict objectForKey:@"blog"] objectForKey:@"description"]]];
     nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"http://" withString:@""];
     nameOrUrlString = [nameOrUrlString stringByReplacingOccurrencesOfString:@"/" withString:@""];
     
-    __block NSString *strImagePath;
     __block UIImage * image;
     if ([AFNetworkReachabilityManager sharedManager].reachable) {
 
@@ -66,9 +67,6 @@
                                             // ...
                                             if (!error) {
                                                 //strImagePath = result;
-                                                //NSData *img = [NSData dataWith length:<#(NSUInteger)#>]
-                                                NSURL * imageURL = [NSURL URLWithString: strImagePath];
-                                                NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
                                                 image = [UIImage imageWithData:result];
                                                 avatarImage.image = image;
                                             }else{
@@ -93,8 +91,8 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(startRefresh:)
              forControlEvents:UIControlEventValueChanged];
-    [self.theCollectionView addSubview:refreshControl];
     
+    [self.theCollectionView addSubview:refreshControl];
     
 
 }
@@ -117,26 +115,47 @@
     // Generate the 'next page' of data.
     
     if ([AFNetworkReachabilityManager sharedManager].reachable) {
-        _currentPage++;
-        //retrieve the posts
-        [[TMAPIClient sharedInstance] posts:[NSString stringWithFormat:@"%@.tumblr.com", lblUsername.text] type:nil parameters:@{ @"offset" : [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE]  } callback:^(id result, NSError *error){
-            
-            if(!error)
-            {
+//        _currentPage++;
+//        //retrieve the posts
+//        
+//        [[TMAPIClient sharedInstance] dashboard:@{@"type" : @"photo",
+//                                                 @"type" : @"text",
+//                                                 @"offset" : [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE]
+//                                    
+//                                                 } callback:^(id result, NSError *error){
+//            if (!error) {
+//                if ([messages count] > 0) {
+//                    // Add the new data to our local collection of data.
+//                    for (int i = 0; i < [[result objectForKey:@"posts"] count]; i++) {
+//                        [messages addObject: [[result objectForKey:@"posts"] objectAtIndex:i]];
+//                    }
+//                }else{
+//                    messages = [NSMutableArray arrayWithArray:[result objectForKey:@"posts"]];
+//                }
+//                _numRetrieved += ITEMS_PAGE_SIZE;
+//                [theCollectionView reloadData];
+//                
+//            }
+//        }];
+        
+            [[TMAPIClient sharedInstance] posts:[NSString stringWithFormat:@"%@.tumblr.com", lblUsername.text] type:nil parameters:@{ @"offset" : [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE]  } callback:^(id result, NSError *error){
                 
-                if ([messages count] > 0) {
-                    // Add the new data to our local collection of data.
-                    for (int i = 0; i < [[result objectForKey:@"posts"] count]; i++) {
-                        [messages addObject: [[result objectForKey:@"posts"] objectAtIndex:i]];
+                if(!error)
+                {
+                    
+                    if ([messages count] > 0) {
+                        // Add the new data to our local collection of data.
+                        for (int i = 0; i < [[result objectForKey:@"posts"] count]; i++) {
+                            [messages addObject: [[result objectForKey:@"posts"] objectAtIndex:i]];
+                        }
+                    }else{
+                        messages = [NSMutableArray arrayWithArray:[result objectForKey:@"posts"]];
                     }
-                }else{
-                    messages = [NSMutableArray arrayWithArray:[result objectForKey:@"posts"]];
+                    _numRetrieved += ITEMS_PAGE_SIZE;
+                    [theCollectionView reloadData];
                 }
-                _numRetrieved += ITEMS_PAGE_SIZE;
-                [theCollectionView reloadData];
-            }
-            
-        }];
+                
+            }];
         }
 
 }
@@ -169,14 +188,30 @@
     
     
     cell.backgroundColor = [UIColor whiteColor];
-    NSDictionary *tmpDict = [[[messages objectAtIndex:indexPath.row] objectForKey:@"photos"] objectAtIndex:0];
-    NSURL * imageURL = [NSURL URLWithString: [[tmpDict objectForKey:@"original_size"] objectForKey:@"url"]];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(5,5, 320, 300)];
-    imv.image=[UIImage imageWithData:imageData];
-    [cell addSubview:imv];
-    //cell.cellImage.image = [UIImage imageWithData:imageData];
-    //cell.titleLabel.lineSpacing = 20.0;
+    [cell.cellImage setHidden: YES];
+    [cell.cellText setHidden: YES];
+    if ([[[messages objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"text"]) {
+        NSString *tmpString = [self styledHTMLwithHTML:[[messages objectAtIndex:indexPath.row] objectForKey:@"body"]];
+        
+        NSAttributedString *attributedText = [self attributedStringWithHTML:tmpString];
+        cell.cellText.attributedText = attributedText;
+        [cell.cellText setHidden: NO];
+    }else if( [[[messages objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"link"]){
+        NSString *tmpString = [self styledHTMLwithHTML:[[messages objectAtIndex:indexPath.row] objectForKey:@"description"]];
+        
+        NSAttributedString *attributedText = [self attributedStringWithHTML:tmpString];
+        cell.cellText.attributedText = attributedText;
+        [cell.cellText setHidden: NO];
+    }else{
+        NSDictionary *tmpDict = [[[messages objectAtIndex:indexPath.row] objectForKey:@"photos"] objectAtIndex:0];
+        NSURL * imageURL = [NSURL URLWithString: [[tmpDict objectForKey:@"original_size"] objectForKey:@"url"]];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(5,5, 320, 300)];
+        imv.image=[UIImage imageWithData:imageData];
+        cell.cellImage.image = [UIImage imageWithData:imageData];
+        [cell.cellImage setHidden: NO];
+    }
+    //[cell addSubview:imv];
     return cell;
 }
 - (NSString *)styledHTMLwithHTML:(NSString *)HTML {
@@ -191,8 +226,12 @@
 }
 -(void)startRefresh:(id)sender
 {
+    UIRefreshControl *tmpRefresh = (UIRefreshControl *)sender;
     _currentPage = 0;
+    _numRetrieved = 0;
     [self getMoreData];
+    [tmpRefresh endRefreshing];
+
 }
 
 -(void)labelTap:(UITapGestureRecognizer *)tgr{
@@ -255,7 +294,6 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *tmpDict = [messages objectAtIndex: indexPath.row];
-    NSString *blogName = [tmpDict objectForKey:@"blog_name"];
     
     Cell *cell = (Cell *)[self.theCollectionView dequeueReusableCellWithReuseIdentifier:ITEM_CELL_IDENTIFIER forIndexPath:indexPath];
     [UIView transitionWithView:theCollectionView

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Reachability.h"
 
 @interface UserViewController : UIViewController
 {
@@ -15,7 +14,6 @@
     NSArray *messages;
     NSDictionary *responseDict;
     NSString *tmpUsername;
-    Reachability *reachability;
 }
 @property (weak, nonatomic) IBOutlet UITextField *txtStringOrUsername;
 @property (weak, nonatomic) IBOutlet UILabel *lblError;

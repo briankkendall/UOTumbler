@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblUsername;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
+@property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *theCollectionView;

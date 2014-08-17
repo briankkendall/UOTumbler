@@ -57,6 +57,7 @@
 		7CCF465E199D577E00F05BE9 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4653199D577E00F05BE9 /* AFURLRequestSerialization.m */; };
 		7CCF465F199D577E00F05BE9 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4655199D577E00F05BE9 /* AFURLResponseSerialization.m */; };
 		7CCF4660199D577E00F05BE9 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF4657199D577E00F05BE9 /* AFURLSessionManager.m */; };
+		7CCF46BB199EA13E00F05BE9 /* TumblrUOTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF46BA199EA13E00F05BE9 /* TumblrUOTestCase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,8 @@
 		7CCF4655199D577E00F05BE9 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		7CCF4656199D577E00F05BE9 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		7CCF4657199D577E00F05BE9 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		7CCF46B9199EA13E00F05BE9 /* TumblrUOTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TumblrUOTestCase.h; sourceTree = "<group>"; };
+		7CCF46BA199EA13E00F05BE9 /* TumblrUOTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TumblrUOTestCase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +262,8 @@
 			children = (
 				7CCF42D4199B830D00F05BE9 /* TumblrUOTests.m */,
 				7CCF42CF199B830D00F05BE9 /* Supporting Files */,
+				7CCF46B9199EA13E00F05BE9 /* TumblrUOTestCase.h */,
+				7CCF46BA199EA13E00F05BE9 /* TumblrUOTestCase.m */,
 			);
 			path = TumblrUOTests;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CCF42D5199B830D00F05BE9 /* TumblrUOTests.m in Sources */,
+				7CCF46BB199EA13E00F05BE9 /* TumblrUOTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

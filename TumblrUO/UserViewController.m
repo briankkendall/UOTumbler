@@ -9,8 +9,7 @@
 #import "UserViewController.h"
 #import "TMAPIClient.h"
 #import "UOFeedCollectionViewController.h"
-//#import "SBJson4.h"
-#import "JXHTTP.h"
+//#import "JXHTTP.h"
 #import "AFNetworkReachabilityManager.h"
 
 @interface UserViewController ()
