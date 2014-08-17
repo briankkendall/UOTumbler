@@ -18,13 +18,13 @@
         // Initialization code
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"Cell" owner:self options:nil];
         
-        if ([arrayOfViews count] < 1) {
-            return nil;
-        }
-        
-        if (![[arrayOfViews objectAtIndex:0] isKindOfClass:[UICollectionViewCell class]]) {
-            return nil;
-        }
+//        if ([arrayOfViews count] < 1) {
+//            return nil;
+//        }
+//        
+//        if (![[arrayOfViews objectAtIndex:0] isKindOfClass:[UICollectionViewCell class]]) {
+//            return nil;
+//        }
         
         self = [arrayOfViews objectAtIndex:0];
         
@@ -32,6 +32,10 @@
     
     return self;
     
+}
+-(void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    [self setNeedsDisplay]; // force drawRect:
 }
 
 /*

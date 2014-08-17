@@ -86,6 +86,8 @@
     // Do any additional setup after loading the view.
     [self.theCollectionView registerClass:[Cell class] forCellWithReuseIdentifier:ITEM_CELL_IDENTIFIER];
     [self.theCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
+    
+    _currentPage = 0;
     _numRetrieved = 0;
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(startRefresh:)
@@ -113,9 +115,8 @@
     // Generate the 'next page' of data.
     
     if ([AFNetworkReachabilityManager sharedManager].reachable) {
-//        _currentPage++;
-//        //retrieve the posts
-//        
+        
+//
 //        [[TMAPIClient sharedInstance] dashboard:@{@"type" : @"photo",
 //                                                 @"type" : @"text",
 //                                                 @"offset" : [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE]
@@ -135,8 +136,14 @@
 //                
 //            }
 //        }];
-        
-            [[TMAPIClient sharedInstance] posts:[NSString stringWithFormat:@"%@.tumblr.com", lblUsername.text] type:nil parameters:@{ @"offset" : [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE]  } callback:^(id result, NSError *error){
+
+
+        //retrieve the posts
+        //increment the current page
+        _currentPage++;
+
+        NSNumber *numItems = [NSNumber numberWithInteger: _currentPage * ITEMS_PAGE_SIZE];
+            [[TMAPIClient sharedInstance] posts:[NSString stringWithFormat:@"%@.tumblr.com", lblUsername.text] type:nil parameters:@{ @"offset" : numItems  } callback:^(id result, NSError *error){
                 
                 if(!error)
                 {
@@ -163,7 +170,7 @@
     Cell *cell = (Cell *)[self.theCollectionView dequeueReusableCellWithReuseIdentifier:ITEM_CELL_IDENTIFIER forIndexPath:indexPath];
     
     // Update the custom cell with some text
-    cell.titleLabel.text = [NSString stringWithFormat:@"Fetched item: %d", indexPath.item];
+    NSLog([NSString stringWithFormat:@"Fetched item: %d", indexPath.item]);
     NSString *sentence = [[messages objectAtIndex:indexPath.row] objectForKey:@"caption"];
     NSString *word = @"Submitted By:";
     if ([sentence rangeOfString:word].location != NSNotFound && sentence != nil) {
@@ -207,9 +214,10 @@
         UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(5,5, 320, 300)];
         imv.image=[UIImage imageWithData:imageData];
         cell.cellImage.image = [UIImage imageWithData:imageData];
+//        [cell addSubview:imv];
         [cell.cellImage setHidden: NO];
     }
-    //[cell addSubview:imv];
+    [cell setNeedsDisplay];
     return cell;
 }
 - (NSString *)styledHTMLwithHTML:(NSString *)HTML {
