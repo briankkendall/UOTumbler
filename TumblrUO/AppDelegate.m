@@ -10,10 +10,15 @@
 #import "TMAPIClient.h"
 #import "AFNetworkReachabilityManager.h"
 
+@interface AppDelegate ()
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     // Override point for customization after application launch.
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
@@ -26,6 +31,10 @@
     [TMAPIClient sharedInstance].OAuthToken = @"a6Ripq4wofWkX41TLFiBAPBYzxUfY1VwP2BreHTmS65rV6UQfn";
     [TMAPIClient sharedInstance].OAuthTokenSecret = @"nmqE9o9oMplE7k8SeYHqoaWeXs2wXfXzoGzrNjPtcgyqb5KK34";
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+
+    
+    
     return YES;
 }
 							

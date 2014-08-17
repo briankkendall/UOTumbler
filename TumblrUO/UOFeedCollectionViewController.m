@@ -12,7 +12,6 @@
 #import "TMAPIClient.h"
 #import "AFNetworkReachabilityManager.h"
 
-
 #define ITEMS_PAGE_SIZE 20
 #define ITEM_CELL_IDENTIFIER @"UOTumblrCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -94,7 +93,6 @@
     
     [self.theCollectionView addSubview:refreshControl];
     
-
 }
 - (void)reachabilityChanged:(NSNotification *)notice
 {
@@ -197,7 +195,7 @@
         cell.cellText.attributedText = attributedText;
         [cell.cellText setHidden: NO];
     }else if( [[[messages objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"link"]){
-        NSString *tmpString = [self styledHTMLwithHTML:[[messages objectAtIndex:indexPath.row] objectForKey:@"description"]];
+        NSString *tmpString = [self styledHTMLwithHTML:[[messages objectAtIndex:indexPath.row] objectForKey:@"url"]];
         
         NSAttributedString *attributedText = [self attributedStringWithHTML:tmpString];
         cell.cellText.attributedText = attributedText;
@@ -254,7 +252,15 @@
                                                   
                                                   UOFeedCollectionViewController *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"UOFeedCollectionViewController"];
                                                   [newView setResponseDict:result];
-                                                  [self.navigationController pushViewController:newView animated:YES];
+                                                  
+                                                  //old school way of doing a transition animation.  couldn't get custom transition stuff working with delegates
+                                                  //TODO: keep playing with the delegates to get it to work the new way. 
+                                                  [UIView animateWithDuration:0.75 animations:^{
+                                                      [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                                                      [self.navigationController pushViewController:newView animated:NO];
+                                                      [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
+                                                  } completion:nil];
+                                                  //[self.navigationController pushViewController:newView animated:YES];
                                                   
                                                   responseDict = result;
                                                   responseData = result;
@@ -293,7 +299,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *tmpDict = [messages objectAtIndex: indexPath.row];
     
     Cell *cell = (Cell *)[self.theCollectionView dequeueReusableCellWithReuseIdentifier:ITEM_CELL_IDENTIFIER forIndexPath:indexPath];
     [UIView transitionWithView:theCollectionView

@@ -95,9 +95,9 @@
     {
         // Get reference to the destination view controller
         UOFeedCollectionViewController *vc = [segue destinationViewController];
-        
         // Pass any objects to the view controller here, like...
         [vc setResponseDict:responseDict];
+
     }
 }
 @end
