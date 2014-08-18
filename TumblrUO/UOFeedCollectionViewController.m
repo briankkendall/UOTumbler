@@ -97,7 +97,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActiveNotif:) name:UIApplicationWillResignActiveNotification object:nil];
     
     [self.theCollectionView addSubview:refreshControl];
-    
+    self.theCollectionView.alwaysBounceVertical = YES;
 }
 
 -(void)appDidBecomeActiveNotif:(NSNotification*)notif
@@ -256,6 +256,7 @@
     UIRefreshControl *tmpRefresh = (UIRefreshControl *)sender;
     _currentPage = 0;
     _numRetrieved = 0;
+    [messages removeAllObjects];
     [self getMoreData];
     [tmpRefresh endRefreshing];
 
