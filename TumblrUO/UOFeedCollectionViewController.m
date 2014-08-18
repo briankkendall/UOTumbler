@@ -93,8 +93,28 @@
     [refreshControl addTarget:self action:@selector(startRefresh:)
              forControlEvents:UIControlEventValueChanged];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActiveNotif:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActiveNotif:) name:UIApplicationWillResignActiveNotification object:nil];
+    
     [self.theCollectionView addSubview:refreshControl];
     
+}
+
+-(void)appDidBecomeActiveNotif:(NSNotification*)notif
+{
+    NSLog(@"appDidBecomeActiveNotif");
+    
+    //refrest and scroll to the beginning when app becomes active...
+    _currentPage = 0;
+    _numRetrieved = 0;
+    
+    [self getMoreData];
+    [theCollectionView setContentOffset:CGPointZero];
+}
+
+-(void)appWillResignActiveNotif:(NSNotification*)notif
+{
+    NSLog(@"appWillResignActiveNotif");
 }
 - (void)reachabilityChanged:(NSNotification *)notice
 {
